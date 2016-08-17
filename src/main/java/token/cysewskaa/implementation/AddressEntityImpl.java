@@ -12,6 +12,7 @@ import token.cysewskaa.entities.PersonEntity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.*;
 import java.util.List;
 
 /**
@@ -25,11 +26,21 @@ public class AddressEntityImpl implements IAdressEntity {
 
 
     @Transactional
-    public List<AddressEntity> getAddressList(long personId) {
-        TypedQuery<PersonEntity> query = entityManager.createQuery("SELECT d from PersonEntity d where d.id = :personId", PersonEntity.class);
-        query.setParameter("personId",personId);
-        List<AddressEntity> list = query.getSingleResult().getAddressEntities();
-        return list;
+    public List<PersonEntity> getAddressList(long personId) {
+
+
+        CriteriaBuilder cb2 = entityManager.getCriteriaBuilder();
+        CriteriaQuery<PersonEntity> c2 = cb2.createQuery(PersonEntity.class);
+        Root<PersonEntity> p2 = c2.from(PersonEntity.class);
+        TypedQuery<PersonEntity> q2 = entityManager.createQuery(c2);
+        Predicate condition2 = cb2.equal(p2.get("id"), personId);
+        c2.where(condition2);
+
+        c2.select(p2.get("addressEntities")).where((cb2.equal(p2.get("id"), personId)));
+        TypedQuery<PersonEntity> q22 = entityManager.createQuery(c2);
+        List<PersonEntity> list2 = q22.getResultList();
+
+return  list2;
     }
 
     @Transactional

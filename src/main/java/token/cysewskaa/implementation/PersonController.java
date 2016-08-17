@@ -17,7 +17,6 @@ import token.cysewskaa.entities.PersonEntity;
 
 
 import javax.validation.Valid;
-import java.lang.reflect.Field;
 import java.util.List;
 
 /**
@@ -28,6 +27,8 @@ public class PersonController {
 
     @Autowired
     PersonRepo personRepo;
+
+
 
     @Autowired
     DataToOrderDTO dataToOrderDTO;
@@ -76,8 +77,6 @@ personRepo.save(data);
 
     @RequestMapping(value = "/person/{personId}", method = RequestMethod.DELETE)
     void personDELETE(@PathVariable("personId") long personId){
-
-
         personRepo.deletePersonById(personId);
 
     }
@@ -85,6 +84,35 @@ personRepo.save(data);
     @RequestMapping(value = "/dto/{dtoID}", method = RequestMethod.GET )
     OrderDTO getDTO(@PathVariable("dtoID") long dtoID){
         return   dataToOrderDTO.setFirstName(dtoID);
+    }
+
+    @Autowired
+    AddressEntityImpl addressDaoImpl;
+
+    @RequestMapping(value = "/person/{personId}/address", method = RequestMethod.GET )
+    List<PersonEntity> addressesGET(@PathVariable("personId") long personId){
+        return addressDaoImpl.getAddressList(personId);
+
+    }
+
+  /*  @RequestMapping(value = "/person/{personId}/address/{addressId}", method = RequestMethod.GET)
+    AddressEntity addressByIdGET(@PathVariable("personId") long personId, @PathVariable("addressId") long addressId){
+        return addressDaoImpl.getAddressById(personId, addressId);
+    }*/
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(value = "/person/{personId}/address", method = RequestMethod.POST, consumes = "application/json")
+    void addressSET(@RequestBody AddressEntity data, @PathVariable("personId") long personId){
+        addressDaoImpl.setAddress(data,personId);
+    }
+
+    @RequestMapping(value = "/person/{personId}/address/{addressId}", method = RequestMethod.PUT, consumes = "application/json")
+    void addressPUT(@RequestBody AddressEntity data, @PathVariable("personId") long personId, @PathVariable("addressId") long addressId){
+        addressDaoImpl.updateAddress(data,personId,addressId);
+    }
+
+    @RequestMapping(value = "/person/{personId}/address/{addressId}", method = RequestMethod.DELETE)
+    void addressDELETE(@PathVariable("personId") long personId,@PathVariable("addressId") long addressId){
+        addressDaoImpl.deleteAddress(personId,addressId);
     }
 
 

@@ -1,6 +1,7 @@
 package token.cysewskaa.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import token.cysewskaa.validator.AdressValidatorAnnotation;
 
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.List;
 /**
  * Created by izodorczyka on 2016-08-04.
  */
+@AdressValidatorAnnotation
 @Entity(name = "ADDRESS")
 public class AddressEntity {
     @Id
