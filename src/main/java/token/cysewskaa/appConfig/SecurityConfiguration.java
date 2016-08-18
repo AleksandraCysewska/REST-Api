@@ -68,7 +68,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
+      /*  httpSecurity
                 .csrf()
                 .disable()
                 .exceptionHandling()
@@ -78,13 +78,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .antMatchers("/auth/**").permitAll()
+                .antMatchers(HttpMethod.OPTIONS, "*//**").permitAll()
+                .antMatchers("/auth*//**").permitAll()
                 .anyRequest().authenticated();
-
+*/
         // Custom JWT based authentication
-        httpSecurity
-                .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+      //  httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.authorizeRequests().antMatchers("/**").permitAll().and().csrf().disable();
     }
 
 }
