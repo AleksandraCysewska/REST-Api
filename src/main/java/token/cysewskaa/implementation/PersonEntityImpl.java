@@ -1,12 +1,13 @@
 package token.cysewskaa.implementation;
 
-import lombok.extern.slf4j.Slf4j;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import token.cysewskaa.crudInterfaces.DataToOrderDTO;
 import token.cysewskaa.entities.PersonEntity;
+import token.cysewskaa.entities.PersonEntity_;
 
 
 import javax.persistence.EntityManager;
@@ -21,7 +22,7 @@ import java.util.List;
 /**
  * Created by izodorczyka on 2016-08-01.
  */
-@Slf4j
+
 //@Scope( proxyMode = ScopedProxyMode.TARGET_CLASS)
   //      @Service
 @Component
@@ -52,7 +53,7 @@ DataToOrderDTO dataToOrderDTO;
      CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<PersonEntity> c = cb.createQuery(PersonEntity.class);
         Root<PersonEntity> p = c.from(PersonEntity.class);
-        Predicate condition = cb.equal(p.get("id"), personId);
+        Predicate condition = cb.equal(p.get(PersonEntity_.id), personId);
         c.where(condition);
         TypedQuery<PersonEntity> q = entityManager.createQuery(c);
         PersonEntity query = q.getSingleResult();

@@ -1,8 +1,11 @@
+/*
 package token.cysewskaa.implementation;
 
+*/
 /**
  * Created by cysewskaa on 2016-08-18.
- */
+ *//*
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration.Dynamic;
@@ -27,4 +30,4 @@ public class Initializer implements WebApplicationInitializer {
 
     }
 
-}
+}*/

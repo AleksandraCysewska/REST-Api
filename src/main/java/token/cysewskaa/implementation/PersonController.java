@@ -4,6 +4,8 @@ package token.cysewskaa.implementation;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -23,19 +25,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import static com.sun.xml.internal.ws.api.message.Packet.Status.Response;
 
-/**
- * Created by izodorczyka on 2016-08-01.
- */
+
+
+
 @RestController
 public class PersonController {
 
@@ -44,15 +39,10 @@ public class PersonController {
     @Autowired
     PersonRepo personRepo;
 
-    private String message = "Hello World";
+
 
     @Autowired
     DataToOrderDTO dataToOrderDTO;
-
-    @RequestMapping(value = "/a", method = RequestMethod.GET)
-    public String test(ModelAndView modelAndView) {
-        return "login";
-    }
 
 @Autowired
 PersonEntityImpl personEntityImpl;
@@ -60,10 +50,7 @@ PersonEntityImpl personEntityImpl;
 
 
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public ModelAndView hello() {
-        return new ModelAndView("hello").addObject("name", "Yashwant");
-    }
+
 
     @RequestMapping(value = "/person", method = RequestMethod.GET )
     List<PersonEntity> personsGET(){
@@ -77,20 +64,6 @@ PersonEntityImpl personEntityImpl;
         return personRepo.getPersonById(personId);
 
     }
-
-    @RequestMapping(value = "/redirect", method = RequestMethod.GET)
-    public String method(HttpServletResponse httpServletResponse) {
-        return "login";
-    }
-
-  /*  @GetMapping("/")
-    public String welcome() {
-
-        return "login";
-    }
-
-
-*/
 
 
 
@@ -136,10 +109,7 @@ personRepo.save(data);
 
     }
 
-  /*  @RequestMapping(value = "/person/{personId}/address/{addressId}", method = RequestMethod.GET)
-    AddressEntity addressByIdGET(@PathVariable("personId") long personId, @PathVariable("addressId") long addressId){
-        return addressDaoImpl.getAddressById(personId, addressId);
-    }*/
+
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/person/{personId}/address", method = RequestMethod.POST, consumes = "application/json")
     void addressSET(@RequestBody AddressEntity data, @PathVariable("personId") long personId){

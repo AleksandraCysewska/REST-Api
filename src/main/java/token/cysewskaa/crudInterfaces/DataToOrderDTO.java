@@ -1,6 +1,6 @@
 package token.cysewskaa.crudInterfaces;
 
-import lombok.extern.slf4j.Slf4j;
+
 import org.apache.log4j.Logger;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Created by cysewskaa on 2016-08-11.
  */
-@Slf4j
+
 @Component
 public class DataToOrderDTO {
 

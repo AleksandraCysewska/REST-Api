@@ -21,7 +21,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @ComponentScan(basePackages = "token.cysewskaa")
 @EnableJpaRepositories(basePackages = "token.cysewskaa.implementation")
-public class Main
+public class Main extends SpringBootServletInitializer
     {
 
     public static void main(String[] args) {
@@ -29,6 +29,9 @@ public class Main
 
     }
 
-
+        @Override
+        protected final SpringApplicationBuilder configure(final SpringApplicationBuilder application) {
+            return application.sources(Main.class);
+        }
 
 }

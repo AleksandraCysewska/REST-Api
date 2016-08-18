@@ -1,8 +1,9 @@
-package token.cysewskaa.implementation;
+/*
 
-/**
- * Created by cysewskaa on 2016-08-18.
- */
+package token.cysewskaa.controller;
+
+
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,16 +17,8 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 
 @Configuration
-@EnableWebMvc
-public class WebAppConfig extends WebMvcConfigurerAdapter {
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/META-INF/resources/webjars/").setCachePeriod(31556926);
-        registry.addResourceHandler("/css/**").addResourceLocations("/css/").setCachePeriod(31556926);
-        registry.addResourceHandler("/img/**").addResourceLocations("/img/").setCachePeriod(31556926);
-        registry.addResourceHandler("/js/**").addResourceLocations("/js/").setCachePeriod(31556926);
-    }
+public class WebAppConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
@@ -35,9 +28,11 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     @Bean
     public InternalResourceViewResolver viewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("WEB-INF/jsp/");
+        resolver.setPrefix("/resources/META-INF/resourcesWEB-INF/");
         resolver.setSuffix(".jsp");
         return resolver;
     }
 
 }
+
+*/

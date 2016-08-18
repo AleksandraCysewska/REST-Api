@@ -1,6 +1,5 @@
 package token.cysewskaa.validator;
 
-import lombok.extern.slf4j.Slf4j;
 import org.apache.log4j.Logger;
 import token.cysewskaa.entities.AddressEntity;
 
@@ -13,7 +12,7 @@ import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 /**
  * Created by cysewskaa on 2016-08-17.
  */
-@Slf4j
+
 public class AddressValidator implements ConstraintValidator<AdressValidatorAnnotation, AddressEntity> {
 
 

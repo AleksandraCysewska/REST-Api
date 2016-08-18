@@ -26,7 +26,6 @@ public interface PersonRepo extends JpaRepository<PersonEntity,Long> {
     PersonEntity getPersonById(@Param("id") Long id);
 
 
-
     @Modifying
     @Transactional
     @Query("delete from token.cysewskaa.entities.PersonEntity u where u.id=:id")
