@@ -30,15 +30,11 @@ public class HelloWorldController {
 
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String verifyLogin(@RequestParam String login, @RequestParam String password)
+    public void verifyLogin(@RequestParam String login, @RequestParam String password)
     {
-        List<UserDao> personListByLogin = userRepo.getPersonListByLogin(login);
-    if (personListByLogin.size()>1)
-    {
-        return "success";
-    }
-        else
-        return "error";
+        Model model = null;
+        model.addAttribute("username", login );
+        model.addAttribute("password", password);
     }
 
 
